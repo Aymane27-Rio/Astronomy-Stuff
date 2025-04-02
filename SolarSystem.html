@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar System</title>
+    <title>Solar System Anim</title>
     <style>
         body {
             margin: 0;
@@ -142,8 +142,8 @@
                 const star = document.createElement('div');
                 star.classList.add('star');
                 star.style.top = Math.random()*100 + '%';
-                star.style.left = Math.random()*100 + '%';
-                star.style.animationDelay = Math.random()*3 + 's';
+                star.style.left = Math.random()* 100 + '%';
+                star.style.animationDelay = Math.random()* 3 + 's';
                 starContainer.appendChild(star);
             }
         </script>
@@ -156,11 +156,11 @@
             <div class="planet mercury"></div>
         </div>
 
-        <div class="orbit" style="width: 320px; height: 320px;">
+        <div class="orbit" style="width: 300px; height: 300px;">
             <div class="planet venus"></div>
         </div>
 
-        <div class="orbit" style="width: 440px; height: 440px;">
+        <div class="orbit" style="width: 400px; height: 400px;">
             <div class="planet earth"></div>
         </div>
 
