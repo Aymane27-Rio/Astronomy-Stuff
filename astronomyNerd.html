@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Phenomena Showcase - 3D Interactive</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(ellipse at center, #001122 0%, #000000 70%);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            perspective: 1000px;
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            transform-style: preserve-3d;
+        }
+
+        .navigation {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(15px);
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateX(8px) translateZ(10px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+        }
+
+        .info-panel {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 380px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            transition: right 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 900;
+            overflow-y: auto;
+            transform-style: preserve-3d;
+        }
+
+        .info-panel.open {
+            right: 0;
+        }
+
+        .info-toggle {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 15px 8px;
+            border-radius: 25px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            writing-mode: vertical-lr;
+            font-weight: bold;
+        }
+
+        .info-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) translateX(-5px);
+        }
+
+        .info-content {
+            padding: 30px;
+            transform: translateZ(20px);
+        }
+
+        .info-title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #64b5f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .fun-facts {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #64b5f6;
+        }
+
+        .fun-facts h3 {
+            color: #64b5f6;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .fact-item {
+            margin: 10px 0;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .fact-item::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+        }
+
+        .section {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+        }
+
+        .section.active {
+            opacity: 1;
+        }
+
+        .section-title {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateZ(50px);
+            font-size: 3em;
+            font-weight: bold;
+            text-align: center;
+            background: linear-gradient(45deg, #fff, #64b5f6, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            z-index: 100;
+            animation: title-glow 3s ease-in-out infinite alternate;
+        }
+
+        /* 3D stars bgd */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            transform-style: preserve-3d;
+        }
+
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out, float 20s infinite linear;
+        }
+
+        /* 3D Solar System (planets in need of some refinement) */
+        .solar-system {
+            position: relative;
+            width: 800px;
+            height: 800px;
+            transform-style: preserve-3d;
+            animation: system-tilt 30s ease-in-out infinite;
+        }
+
+        .sun {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 30% 30%, #fff3a0, #ffcc33, #ff6600, #cc4400);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(0px);
+            box-shadow: 0 0 100px 40px rgba(255, 165, 0, 0.6), inset -20px -20px 40px rgba(0,0,0,0.3);
+            animation: solar-flare 4s ease-in-out infinite, sun-rotate 20s linear infinite;
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(75deg);
+            transform-style: preserve-3d;
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(20px) rotate(0deg) translateX(var(--orbit-radius)) rotateY(0deg);
+            animation: orbit var(--orbit-duration) linear infinite;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), inset -5px -5px 15px rgba(0,0,0,0.4);
+            transform-style: preserve-3d;
+        }
+
+        .mercury { width: 15px; height: 15px; background: radial-gradient(circle at 30% 30%, #b8860b, #8c7853); --orbit-radius: 130px; --orbit-duration: 8s; }
+        .venus { width: 20px; height: 20px; background: radial-gradient(circle at 30% 30%, #fff8dc, #ffc649); --orbit-radius: 170px; --orbit-duration: 12s; }
+        .earth { width: 25px; height: 25px; background: radial-gradient(circle at 30% 30%, #87ceeb, #6b93d6, #4caf50); --orbit-radius: 230px; --orbit-duration: 18s; }
+        .mars { width: 20px; height: 20px; background: radial-gradient(circle at 30% 30%, #ff6347, #cd5c5c); --orbit-radius: 310px; --orbit-duration: 25s; }
+        .jupiter { width: 40px; height: 40px; background: radial-gradient(circle at 30% 30%, #fad5a5, #d8ca9d, #deb887); --orbit-radius: 390px; --orbit-duration: 35s; }
+
+        /* 3D Black Hole */
+        .black-hole-container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            transform-style: preserve-3d;
+            animation: black-hole-wobble 15s ease-in-out infinite;
+        }
+
+        .event-horizon {
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, transparent 30%, #000 50%, #111 100%);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(10px);
+            box-shadow: inset 0 0 80px #000, 0 0 150px #4a0e4e, 0 0 300px rgba(74, 14, 78, 0.3);
+        }
+
+        .accretion-disk {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(75deg);
+            border-radius: 50%;
+            animation: spin var(--spin-duration) linear infinite;
+            transform-style: preserve-3d;
+        }
+
+        .disk-1 { width: 380px; height: 380px; border: 18px solid transparent; border-top: 18px solid #ff6b35; border-right: 18px solid #f7931e; opacity: 0.9; --spin-duration: 3s; }
+        .disk-2 { width: 420px; height: 420px; border: 12px solid transparent; border-bottom: 12px solid #ffcc02; border-left: 12px solid #fff200; opacity: 0.7; --spin-duration: 2s; }
+        .disk-3 { width: 480px; height: 480px; border: 10px solid transparent; border-top: 10px solid #ff3300; border-right: 10px solid #cc0000; opacity: 0.5; --spin-duration: 1.5s; }
+
+        /* 3D Supernova */
+        .supernova-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            transform-style: preserve-3d;
+            animation: supernova-shake 0.1s ease-in-out infinite;
+        }
+
+        .supernova-core {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%, #fff, #ffaa00, #ff4400, #cc0000);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(30px);
+            animation: supernova-pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 100px rgba(255, 68, 0, 0.8);
+        }
+
+        .shockwave {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(var(--wave-z));
+            border: 4px solid;
+            border-radius: 50%;
+            animation: expand 4s ease-out infinite;
+            transform-style: preserve-3d;
+        }
+
+        .wave-1 { border-color: #ff6b35; --wave-z: 20px; animation-delay: 0s; }
+        .wave-2 { border-color: #f7931e; --wave-z: 10px; animation-delay: 0.5s; }
+        .wave-3 { border-color: #ffcc02; --wave-z: 0px; animation-delay: 1s; }
+        .wave-4 { border-color: #fff200; --wave-z: -10px; animation-delay: 1.5s; }
+
+        /* 3D Pulsar */
+        .pulsar-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            transform-style: preserve-3d;
+            animation: pulsar-wobble 5s ease-in-out infinite;
+        }
+
+        .neutron-star {
+            width: 35px;
+            height: 35px;
+            background: radial-gradient(circle at 30% 30%, #e6e6ff, #4d4dff, #0000cc, #000066);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(20px);
+            animation: neutron-spin 0.5s linear infinite;
+            box-shadow: 0 0 80px #0066ff, 0 0 150px rgba(0, 102, 255, 0.5);
+        }
+
+        .beam {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            background: linear-gradient(90deg, transparent, rgba(102, 204, 255, 0.9), rgba(255, 255, 255, 0.8), rgba(102, 204, 255, 0.9), transparent);
+            animation: beam-sweep 1s linear infinite;
+            transform-style: preserve-3d;
+        }
+
+        .beam-1 { width: 350px; height: 12px; transform: translate(-50%, -50%) translateZ(10px); }
+        .beam-2 { width: 350px; height: 12px; transform: translate(-50%, -50%) translateZ(10px) rotate(180deg); }
+
+        /* 3D Galaxy (still needs some work)*/
+        .galaxy-container {
+            position: relative;
+            width: 700px;
+            height: 700px;
+            transform-style: preserve-3d;
+            animation: galaxy-perspective 40s ease-in-out infinite;
+        }
+
+        .galaxy-core {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, #fff, #ffdd44, #ff8800, #cc4400);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(30px);
+            box-shadow: 0 0 150px rgba(255, 221, 68, 0.8);
+            animation: core-pulse 8s ease-in-out infinite;
+        }
+
+        .spiral-arm {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            animation: galaxy-rotate 25s linear infinite;
+            transform-style: preserve-3d;
+        }
+
+        .arm-1 { 
+            width: 400px; 
+            height: 6px; 
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), rgba(102, 178, 255, 0.6), rgba(255, 255, 255, 0.4), transparent);
+            transform: translate(-50%, -50%) translateZ(15px) rotateX(85deg);
+            border-radius: 3px;
+            box-shadow: 0 0 20px rgba(102, 178, 255, 0.6);
+        }
+        .arm-2 { 
+            width: 350px; 
+            height: 5px; 
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), rgba(102, 178, 255, 0.4), rgba(255, 255, 255, 0.3), transparent);
+            transform: translate(-50%, -50%) translateZ(10px) rotateX(85deg) rotate(120deg);
+            border-radius: 2px;
+            box-shadow: 0 0 15px rgba(102, 178, 255, 0.4);
+        }
+
+        /* some enhancing for animations */
+        @keyframes title-glow {
+            0% { text-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
+            100% { text-shadow: 0 0 50px rgba(100, 181, 246, 0.8), 0 0 80px rgba(255, 215, 0, 0.4); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: translateZ(var(--star-z)) scale(1); }
+            50% { opacity: 1; transform: translateZ(var(--star-z)) scale(1.2); }
+        }
+
+        @keyframes float {
+            0% { transform: translateZ(var(--star-z)) rotateY(0deg) translateX(2px); }
+            100% { transform: translateZ(var(--star-z)) rotateY(360deg) translateX(2px); }
+        }
+
+        @keyframes system-tilt {
+            0%, 100% { transform: rotateX(10deg) rotateY(0deg); }
+            25% { transform: rotateX(15deg) rotateY(5deg); }
+            50% { transform: rotateX(5deg) rotateY(10deg); }
+            75% { transform: rotateX(20deg) rotateY(5deg); }
+        }
+
+        @keyframes orbit {
+            from { transform: translate(-50%, -50%) translateZ(20px) rotate(0deg) translateX(var(--orbit-radius)) rotateY(0deg); }
+            to { transform: translate(-50%, -50%) translateZ(20px) rotate(360deg) translateX(var(--orbit-radius)) rotateY(360deg); }
+        }
+
+        @keyframes solar-flare {
+            0%, 100% { box-shadow: 0 0 100px 40px rgba(255, 165, 0, 0.6), inset -20px -20px 40px rgba(0,0,0,0.3); }
+            50% { box-shadow: 0 0 150px 60px rgba(255, 165, 0, 0.9), inset -20px -20px 40px rgba(0,0,0,0.3); }
+        }
+
+        @keyframes sun-rotate {
+            from { transform: translate(-50%, -50%) translateZ(0px) rotateZ(0deg); }
+            to { transform: translate(-50%, -50%) translateZ(0px) rotateZ(360deg); }
+        }
+
+        @keyframes black-hole-wobble {
+            0%, 100% { transform: rotateX(5deg) rotateY(0deg); }
+            50% { transform: rotateX(-5deg) rotateY(5deg); }
+        }
+
+        @keyframes spin {
+            from { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg); }
+            to { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
+        }
+
+        @keyframes supernova-shake {
+            0%, 100% { transform: translateX(0px); }
+            25% { transform: translateX(-1px) translateY(1px); }
+            50% { transform: translateX(1px) translateY(-1px); }
+            75% { transform: translateX(-1px) translateY(-1px); }
+        }
+
+        @keyframes supernova-pulse {
+            0% { transform: translate(-50%, -50%) translateZ(30px) scale(1); }
+            50% { transform: translate(-50%, -50%) translateZ(30px) scale(1.3); }
+            100% { transform: translate(-50%, -50%) translateZ(30px) scale(1); }
+        }
+
+        @keyframes expand {
+            0% { width: 0; height: 0; opacity: 1; }
+            100% { width: 600px; height: 600px; opacity: 0; }
+        }
+
+        @keyframes pulsar-wobble {
+            0%, 100% { transform: rotateX(0deg) rotateZ(5deg); }
+            50% { transform: rotateX(10deg) rotateZ(-5deg); }
+        }
+
+        @keyframes neutron-spin {
+            from { transform: translate(-50%, -50%) translateZ(20px) rotate(0deg); }
+            to { transform: translate(-50%, -50%) translateZ(20px) rotate(360deg); }
+        }
+
+        @keyframes beam-sweep {
+            0% { transform: translate(-50%, -50%) translateZ(10px) rotate(0deg); opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { transform: translate(-50%, -50%) translateZ(10px) rotate(360deg); opacity: 1; }
+        }
+
+        @keyframes galaxy-perspective {
+            0%, 100% { transform: rotateX(75deg) rotateY(0deg); }
+            25% { transform: rotateX(80deg) rotateY(10deg); }
+            50% { transform: rotateX(70deg) rotateY(20deg); }
+            75% { transform: rotateX(85deg) rotateY(10deg); }
+        }
+
+        @keyframes galaxy-rotate {
+            from { transform: translate(-50%, -50%) translateZ(15px) rotateX(85deg) rotate(0deg); }
+            to { transform: translate(-50%, -50%) translateZ(15px) rotateX(85deg) rotate(360deg); }
+        }
+
+        @keyframes core-pulse {
+            0%, 100% { box-shadow: 0 0 150px rgba(255, 221, 68, 0.8); }
+            50% { box-shadow: 0 0 200px rgba(255, 221, 68, 1.2); }
+        }
+
+        /* Scrollbar */
+        .info-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .info-panel::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .info-panel::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <button class="nav-btn active" data-section="solar-system">Solar System</button>
+            <button class="nav-btn" data-section="black-hole">Black Hole</button>
+            <button class="nav-btn" data-section="supernova">Supernova</button>
+            <button class="nav-btn" data-section="pulsar">Pulsar</button>
+            <button class="nav-btn" data-section="galaxy">Galaxy</button>
+        </div>
+
+        <!-- info Toggle Button -->
+        <button class="info-toggle" onclick="toggleInfoPanel()">INFO</button>
+
+        <!-- info Panel -->
+        <div class="info-panel" id="infoPanel">
+            <div class="info-content" id="infoContent">
+                <!-- dynamic update of content -->
+            </div>
+        </div>
+
+        <!-- 3D stars bgd -->
+        <div class="stars" id="stars"></div>
+
+        <!-- Solar System Section -->
+        <div class="section active" id="solar-system">
+            <div class="section-title">Our Beloved Solar System</div>
+            <div class="solar-system">
+                <div class="sun"></div>
+                <div class="orbit" style="width: 260px; height: 260px;">
+                    <div class="planet mercury"></div>
+                </div>
+                <div class="orbit" style="width: 340px; height: 340px;">
+                    <div class="planet venus"></div>
+                </div>
+                <div class="orbit" style="width: 460px; height: 460px;">
+                    <div class="planet earth"></div>
+                </div>
+                <div class="orbit" style="width: 620px; height: 620px;">
+                    <div class="planet mars"></div>
+                </div>
+                <div class="orbit" style="width: 780px; height: 780px;">
+                    <div class="planet jupiter"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Black Hole Section -->
+        <div class="section" id="black-hole">
+            <div class="section-title">Black Hole & Accretion Disk (careful you get sucked in)</div>
+            <div class="black-hole-container">
+                <div class="accretion-disk disk-3"></div>
+                <div class="accretion-disk disk-2"></div>
+                <div class="accretion-disk disk-1"></div>
+                <div class="event-horizon"></div>
+            </div>
+        </div>
+
+        <!-- Supernova Section -->
+        <div class="section" id="supernova">
+            <div class="section-title">Supernova Explosion BAAAAAAAM</div>
+            <div class="supernova-container">
+                <div class="supernova-core"></div>
+                <div class="shockwave wave-1"></div>
+                <div class="shockwave wave-2"></div>
+                <div class="shockwave wave-3"></div>
+                <div class="shockwave wave-4"></div>
+            </div>
+        </div>
+
+        <!-- Pulsar Section -->
+        <div class="section" id="pulsar">
+            <div class="section-title">Pulsar - Neutron Star</div>
+            <div class="pulsar-container">
+                <div class="beam beam-1"></div>
+                <div class="beam beam-2"></div>
+                <div class="neutron-star"></div>
+            </div>
+        </div>
+
+        <!-- Galaxy Section -->
+        <div class="section" id="galaxy">
+            <div class="section-title">Spiral Galaxy</div>
+            <div class="galaxy-container">
+                <div class="spiral-arm arm-1"></div>
+                <div class="spiral-arm arm-2"></div>
+                <div class="galaxy-core"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Educational content 
+        const infoData = {
+            'solar-system': {
+                title: 'Our Solar System',
+                description: 'The Solar System is a gravitationally bound system consisting of the Sun and all the objects that orbit it. Formed about 4.6 billion years ago, our cosmic neighborhood contains eight planets, numerous moons, asteroids, comets, and other celestial bodies.',
+                facts: [
+                    'The Sun contains 99.86% of all mass in the Solar System',
+                    'Jupiter is more massive than all other planets combined',
+                    'One day on Venus (243 Earth days) is longer than its year (225 Earth days)',
+                    'Mars has the largest volcano in the Solar System: Olympus Mons',
+                    'Saturn\'s density is less than water - it would float!'
+                ]
+            },
+            'black-hole': {
+                title: 'Black Holes',
+                description: 'Black holes are regions of spacetime where gravity is so strong that nothing—not even light—can escape. They form when massive stars collapse at the end of their lives, creating a singularity surrounded by an event horizon.',
+                facts: [
+                    'The closest black hole to Earth is about 1,000 light-years away',
+                    'Time slows down near black holes due to gravitational time dilation',
+                    'The supermassive black hole in our galaxy is called Sagittarius A*',
+                    'Accretion disks can reach temperatures of millions of degrees',
+                    'Black holes eventually evaporate through Hawking radiation'
+                ]
+            },
+            'supernova': {
+                title: 'Supernovae',
+                description: 'A supernova is the explosive death of a massive star, occurring when the star exhausts its nuclear fuel. These cosmic explosions can briefly outshine entire galaxies and are responsible for creating and dispersing heavy elements throughout the universe.',
+                facts: [
+                    'A supernova releases more energy in seconds than our Sun will in its entire lifetime',
+                    'Elements heavier than iron are only created during supernovae',
+                    'The Crab Nebula is a supernova remnant observed by Chinese astronomers in 1054 AD',
+                    'Supernovae occur about once every 50 years in galaxies like the Milky Way',
+                    'Type Ia supernovae are used as "standard candles" to measure cosmic distances'
+                ]
+            },
+            'pulsar': {
+                title: 'Pulsars',
+                description: 'Pulsars are highly magnetized neutron stars that emit beams of electromagnetic radiation from their magnetic poles. As they rotate, these beams sweep across space like lighthouse beams, creating regular pulses when they point toward Earth.',
+                facts: [
+                    'Pulsars can spin up to 700 times per second',
+                    'They are incredibly dense - a teaspoon would weigh about 6 billion tons',
+                    'The first pulsar was discovered in 1967 by Jocelyn Bell Burnell',
+                    'Some pulsars are more accurate timekeepers than atomic clocks',
+                    'There are over 3,000 known pulsars in our galaxy'
+                ]
+            },
+            'galaxy': {
+                title: 'Spiral Galaxies',
+                description: 'Spiral galaxies are disk-shaped collections of stars, gas, and dust with prominent spiral arms extending from a central bulge. They contain billions of stars and are held together by gravity and dark matter. Our Milky Way is a barred spiral galaxy.',
+                facts: [
+                    'The Milky Way contains 200-400 billion stars',
+                    'It takes our Solar System 225-250 million years to orbit the galaxy once',
+                    'Spiral arms are density waves that compress gas and trigger star formation',
+                    'The Andromeda Galaxy will collide with the Milky Way in 4.5 billion years',
+                    'About 60% of observed galaxies are spiral galaxies'
+                ]
+            }
+        };
+
+        // 3d stars with depth
+        const starContainer = document.getElementById('stars');
+        for (let i = 0; i < 300; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            
+            const size = Math.random() * 3 + 1;
+            const zDepth = Math.random() * 500 - 250;
+            const brightness = Math.max(0.2, 1 - Math.abs(zDepth) / 500);
+            
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.background = `rgba(255, 255, 255, ${brightness})`;
+            star.style.setProperty('--star-z', zDepth + 'px');
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (2 + Math.random() * 4) + 's';
+            
+            //  some colored stars 
+            if (Math.random() < 0.1) {
+                const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b'];
+                star.style.background = colors[Math.floor(Math.random() * colors.length)];
+            }
+            
+            starContainer.appendChild(star);
+        }
+
+        // Navigation functionality with info panel updates
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const sections = document.querySelectorAll('.section');
+        let currentSection = 'solar-system';
+
+        function updateInfoContent(sectionId) {
+            const info = infoData[sectionId];
+            const infoContent = document.getElementById('infoContent');
+            
+            infoContent.innerHTML = `
+                <div class="info-title">${info.title}</div>
+                <div class="info-description">${info.description}</div>
+                <div class="fun-facts">
+                    <h3>Some fascinating facts</h3>
+                    ${info.facts.map(fact => `<div class="fact-item">${fact}</div>`).join('')}
+                </div>
+            `;
+        }
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetSection = button.getAttribute('data-section');
+                
+                // remove active classes
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                sections.forEach(section => section.classList.remove('active'));
+                
+                // active classes
+                button.classList.add('active');
+                document.getElementById(targetSection).classList.add('active');
+                
+                // update of the info panel
+                currentSection = targetSection;
+                updateInfoContent(targetSection);
+            });
+        });
+
+        // Info panel toggle functionality
+        function toggleInfoPanel() {
+            const panel = document.getElementById('infoPanel');
+            panel.classList.toggle('open');
+        }
+
+        // Initialize with our beloved solar system
+        updateInfoContent('solar-system');
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const sections = ['solar-system', 'black-hole', 'supernova', 'pulsar', 'galaxy'];
+            const currentIndex = sections.indexOf(currentSection);
+            
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                const nextIndex = (currentIndex + 1) % sections.length;
+                document.querySelector(`[data-section="${sections[nextIndex]}"]`).click();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                const prevIndex = (currentIndex - 1 + sections.length) % sections.length;
+                document.querySelector(`[data-section="${sections[prevIndex]}"]`).click();
+            } else if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                toggleInfoPanel();
+            }
+        });
+
+        // particle effects for the black hole section
+        function createMatterParticle() {
+            const blackHoleSection = document.getElementById('black-hole');
+            if (blackHoleSection.classList.contains('active')) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: ${Math.random() * 4 + 2}px;
+                    height: ${Math.random() * 4 + 2}px;
+                    background: ${['#fff', '#ffaa00', '#ff6600', '#ff0000'][Math.floor(Math.random() * 4)]};
+                    border-radius: 50%;
+                    top: ${Math.random() * 80 + 10}%;
+                    left: ${Math.random() * 80 + 10}%;
+                    transform-style: preserve-3d;
+                    animation: spiral-in ${3 + Math.random() * 2}s linear forwards;
+                    box-shadow: 0 0 10px currentColor;
+                `;
+                
+                const container = blackHoleSection.querySelector('.black-hole-container');
+                container.appendChild(particle);
+                
+                setTimeout(() => {
+                    if (container.contains(particle)) {
+                        container.removeChild(particle);
+                    }
+                }, 5000);
+            }
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spiral-in {
+                0% { 
+                    transform: rotate(0deg) translateX(250px) rotate(0deg) translateZ(20px); 
+                    opacity: 1; 
+                }
+                100% { 
+                    transform: rotate(1800deg) translateX(30px) rotate(-1800deg) translateZ(-10px); 
+                    opacity: 0; 
+                    filter: brightness(3);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // creation of new matter particles periodically
+        setInterval(createMatterParticle, 1500);
+
+        // ghbra d'njom o les particules
+        function createCosmicDust() {
+            const dust = document.createElement('div');
+            dust.style.cssText = `
+                position: fixed;
+                width: 1px;
+                height: 1px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                top: ${Math.random() * 100}vh;
+                left: -5px;
+                z-index: 2;
+                animation: drift ${10 + Math.random() * 20}s linear forwards;
+            `;
+            
+            document.body.appendChild(dust);
+            
+            setTimeout(() => {
+                if (document.body.contains(dust)) {
+                    document.body.removeChild(dust);
+                }
+            }, 30000);
+        }
+
+        // drift, picanto hh
+        const driftStyle = document.createElement('style');
+        driftStyle.textContent = `
+            @keyframes drift {
+                0% { 
+                    transform: translateX(0) translateY(0); 
+                    opacity: 0; 
+                }
+                10% { 
+                    opacity: 1; 
+                }
+                90% { 
+                    opacity: 1; 
+                }
+                100% { 
+                    transform: translateX(100vw) translateY(${Math.random() * 200 - 100}px); 
+                    opacity: 0; 
+                }
+            }
+        `;
+        document.head.appendChild(driftStyle);
+
+        // ghbra d'njom, again
+        setInterval(createCosmicDust, 3000);
+
+        // 3D tilt with mouse movement
+        let mouseX = 0, mouseY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+        });
+
+        // smoother camera movement
+        function updateCameraAngle() {
+            const container = document.querySelector('.container');
+            const tiltX = mouseY * 5;
+            const tiltY = mouseX * 5;
+            
+            container.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+            
+            requestAnimationFrame(updateCameraAngle);
+        }
+        
+        
+        updateCameraAngle();
+
+        // loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 1s ease-in';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // oprimization of the performance
+        document.addEventListener('visibilitychange', () => {
+            const animations = document.querySelectorAll('*');
+            if (document.hidden) {
+                animations.forEach(el => {
+                    if (el.style.animationPlayState !== 'paused') {
+                        el.style.animationPlayState = 'paused';
+                    }
+                });
+            } else {
+                animations.forEach(el => {
+                    if (el.style.animationPlayState === 'paused') {
+                        el.style.animationPlayState = 'running';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
