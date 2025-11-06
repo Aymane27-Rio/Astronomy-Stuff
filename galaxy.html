@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmic Phenomena | Galaxy</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-section="galaxy">
+  <div class="site-wrap">
+    <div class="stars"></div>
+    <header class="header">
+      <div class="brand">Cosmic Phenomena</div>
+      <nav class="nav">
+        <a href="solar-system.html">Solar System</a>
+        <a href="black-hole.html">Black Hole</a>
+        <a href="supernova.html">Supernova</a>
+        <a href="pulsar.html">Pulsar</a>
+        <a class="active" href="galaxy.html">Galaxy</a>
+      </nav>
+    </header>
+
+    <button class="info-toggle" onclick="toggleInfoPanel()">INFO</button>
+    <div class="info-panel" id="infoPanel"><div class="info-content" id="infoContent"></div></div>
+
+    <main class="main">
+      <section class="scene">
+        <div class="section-title">Spiral Galaxy</div>
+        <div class="galaxy-container">
+          <div class="spiral-arm arm-1"></div>
+          <div class="spiral-arm arm-2"></div>
+          <div class="galaxy-core"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">© 2025 Cosmic Phenomena</footer>
+  </div>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

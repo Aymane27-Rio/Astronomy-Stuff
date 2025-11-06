@@ -1,0 +1,128 @@
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'Arial',sans-serif;background:radial-gradient(ellipse at center,#001122 0%,#000 70%);color:#fff;min-height:100vh;overflow-x:hidden}
+
+/* Layout */
+.site-wrap{position:relative;min-height:100vh;display:flex;flex-direction:column}
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:14px 22px;background:rgba(0,0,0,.35);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
+.brand{font-weight:800;letter-spacing:.5px;background:linear-gradient(45deg,#fff,#64b5f6,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.nav a{display:inline-block;padding:10px 14px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.06);color:#fff;text-decoration:none;font-weight:600;transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+.nav a.active,.nav a:hover{background:rgba(255,255,255,.18);transform:translateY(-1px)}
+.main{flex:1;display:flex;align-items:center;justify-content:center;padding:120px 20px 80px}
+.footer{padding:16px 20px;text-align:center;background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.08)}
+
+/* Stars background */
+.stars{position:fixed;inset:0;z-index:0;transform-style:preserve-3d;pointer-events:none;transform:translate3d(var(--px,0),var(--py,0),0)}
+.star{position:absolute;border-radius:50%;animation:twinkle 3s infinite ease-in-out, float 20s infinite linear}
+
+/* Shared panels */
+.info-toggle{position:fixed;right:18px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.3);color:#fff;padding:14px 8px;border-radius:25px;cursor:pointer;z-index:1100;transition:all .3s ease;backdrop-filter:blur(10px);writing-mode:vertical-lr;font-weight:700}
+.info-toggle:hover{background:rgba(255,255,255,.2);transform:translateY(-50%) translateX(-5px)}
+.info-panel{position:fixed;right:-400px;top:0;width:360px;height:100vh;background:rgba(0,0,0,.85);backdrop-filter:blur(20px);border-left:1px solid rgba(255,255,255,.1);transition:right .6s cubic-bezier(.4,0,.2,1);z-index:1050;overflow-y:auto;transform-style:preserve-3d}
+.info-panel.open{right:0}
+.info-content{padding:28px;transform:translateZ(20px)}
+.info-title{font-size:1.8em;font-weight:800;margin-bottom:14px;background:linear-gradient(45deg,#fff,#64b5f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.info-description{font-size:1rem;line-height:1.6;margin-bottom:18px;color:rgba(255,255,255,.9)}
+.fun-facts{background:rgba(255,255,255,.05);border-radius:14px;padding:16px;margin:16px 0;border-left:4px solid #64b5f6}
+.fun-facts h3{color:#64b5f6;margin-bottom:10px;font-size:1.1em}
+.fact-item{margin:8px 0;padding-left:14px;position:relative}
+.fact-item::before{content:'★';position:absolute;left:0;color:#ffd700}
+
+/* Scene containers */
+.scene{position:relative;display:flex;align-items:center;justify-content:center;min-height:60vh;transform-style:preserve-3d}
+.section-title{position:absolute;top:130px;left:50%;transform:translateX(-50%) translateZ(50px) translate3d(var(--tx,0),var(--ty,0),0);font-size:2.6em;font-weight:800;text-align:center;background:linear-gradient(45deg,#fff,#64b5f6,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:0 0 30px rgba(255,255,255,.5);z-index:10;animation:title-glow 3s ease-in-out infinite alternate}
+
+/* Page transition overlay */
+.page-transition{position:fixed;inset:0;z-index:2000;background:radial-gradient(ellipse at center, rgba(0,0,0,.9) 0%, rgba(0,0,0,.96) 70%);pointer-events:none;opacity:0}
+.page-transition.page-enter{animation:page-enter .5s ease forwards}
+.page-transition.page-leave{animation:page-leave .4s ease forwards}
+
+@keyframes page-enter{from{opacity:1}to{opacity:0}}
+@keyframes page-leave{from{opacity:0}to{opacity:1}}
+
+/* Solar system */
+.solar-system{position:relative;width:800px;height:800px;transform-style:preserve-3d;animation:system-tilt 30s ease-in-out infinite}
+.sun{width:120px;height:120px;background:radial-gradient(circle at 30% 30%,#fff3a0,#ffcc33,#ff6600,#cc4400);border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) translateZ(0);box-shadow:0 0 100px 40px rgba(255,165,0,.6),inset -20px -20px 40px rgba(0,0,0,.3);animation:solar-flare 4s ease-in-out infinite,sun-rotate 20s linear infinite}
+.orbit{position:absolute;border:1px solid rgba(255,255,255,.05);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%) rotateX(75deg);transform-style:preserve-3d;animation:orbit-ring var(--orbit-duration) linear infinite}
+.planet{position:absolute;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%) translateZ(20px) translateX(var(--orbit-radius));box-shadow:0 0 20px rgba(255,255,255,.25),inset -8px -8px 18px rgba(0,0,0,.45);transform-style:preserve-3d;isolation:isolate}
+.planet::before{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(circle at var(--light-x,30%) var(--light-y,30%), rgba(255,255,255,.85), rgba(255,255,255,.25) 22%, rgba(255,255,255,0) 42%);filter:blur(.5px);opacity:.6}
+.planet::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;mix-blend-mode:multiply;background:radial-gradient(circle at calc(100% - var(--light-x,70%)) calc(100% - var(--light-y,70%)), rgba(0,0,0,0) 38%, rgba(0,0,0,.28) 65%, rgba(0,0,0,.55) 85%);opacity:.9}
+.mercury{width:15px;height:15px;background:radial-gradient(circle at 30% 30%,#b8860b,#8c7853);--orbit-radius:130px;--orbit-duration:8s}
+.venus{width:20px;height:20px;background:radial-gradient(circle at 30% 30%,#fff8dc,#ffc649);--orbit-radius:170px;--orbit-duration:12s}
+.earth{width:25px;height:25px;background:radial-gradient(circle at 30% 30%,#87ceeb,#6b93d6,#4caf50);--orbit-radius:230px;--orbit-duration:18s}
+.mars{width:20px;height:20px;background:radial-gradient(circle at 30% 30%,#ff6347,#cd5c5c);--orbit-radius:310px;--orbit-duration:25s}
+.jupiter{width:40px;height:40px;background:radial-gradient(circle at 30% 30%,#fad5a5,#d8ca9d,#deb887);--orbit-radius:390px;--orbit-duration:35s}
+
+/* Black hole */
+.black-hole-container{position:relative;width:600px;height:600px;transform-style:preserve-3d;animation:black-hole-wobble 15s ease-in-out infinite}
+.event-horizon{width:180px;height:180px;background:radial-gradient(circle,transparent 30%,#000 50%,#111 100%);border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) translateZ(10px);box-shadow:inset 0 0 80px #000,0 0 150px #4a0e4e,0 0 300px rgba(74,14,78,.3)}
+.accretion-disk{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotateX(75deg);border-radius:50%;animation:spin var(--spin-duration) linear infinite;transform-style:preserve-3d}
+.disk-1{width:380px;height:380px;border:18px solid transparent;border-top:18px solid #ff6b35;border-right:18px solid #f7931e;opacity:.9;--spin-duration:3s}
+.disk-2{width:420px;height:420px;border:12px solid transparent;border-bottom:12px solid #ffcc02;border-left:12px solid #fff200;opacity:.7;--spin-duration:2s}
+.disk-3{width:480px;height:480px;border:10px solid transparent;border-top:10px solid #ff3300;border-right:10px solid #cc0000;opacity:.5;--spin-duration:1.5s}
+
+/* Supernova */
+.supernova-container{position:relative;width:500px;height:500px;transform-style:preserve-3d;animation:supernova-shake .1s ease-in-out infinite}
+.supernova-core{width:100px;height:100px;background:radial-gradient(circle at 30% 30%,#fff,#ffaa00,#ff4400,#cc0000);border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) translateZ(30px);animation:supernova-pulse 2s ease-in-out infinite;box-shadow:0 0 100px rgba(255,68,0,.8)}
+.shockwave{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) translateZ(var(--wave-z));border:4px solid;border-radius:50%;animation:expand 4s ease-out infinite;transform-style:preserve-3d}
+.wave-1{border-color:#ff6b35;--wave-z:20px;animation-delay:0s}
+.wave-2{border-color:#f7931e;--wave-z:10px;animation-delay:.5s}
+.wave-3{border-color:#ffcc02;--wave-z:0;animation-delay:1s}
+.wave-4{border-color:#fff200;--wave-z:-10px;animation-delay:1.5s}
+
+/* Pulsar */
+.pulsar-container{position:relative;width:400px;height:400px;transform-style:preserve-3d;animation:pulsar-wobble 5s ease-in-out infinite}
+.neutron-star{width:35px;height:35px;background:radial-gradient(circle at 30% 30%,#e6e6ff,#4d4dff,#00c,#006);border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) translateZ(20px);animation:neutron-spin .5s linear infinite;box-shadow:0 0 80px #06f,0 0 150px rgba(0,102,255,.5)}
+.beam{position:absolute;top:50%;left:50%;transform-origin:center;background:linear-gradient(90deg,transparent,rgba(102,204,255,.9),rgba(255,255,255,.8),rgba(102,204,255,.9),transparent);animation:beam-sweep 1s linear infinite;transform-style:preserve-3d}
+.beam-1{width:350px;height:12px;transform:translate(-50%,-50%) translateZ(10px)}
+.beam-2{width:350px;height:12px;transform:translate(-50%,-50%) translateZ(10px) rotate(180deg)}
+
+/* Galaxy */
+.galaxy-container{position:relative;width:700px;height:700px;transform-style:preserve-3d;animation:galaxy-perspective 40s ease-in-out infinite}
+.galaxy-core{width:80px;height:80px;background:radial-gradient(circle at 30% 30%,#fff,#ffdd44,#ff8800,#cc4400);border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) translateZ(30px);box-shadow:0 0 150px rgba(255,221,68,.8);animation:core-pulse 8s ease-in-out infinite}
+.spiral-arm{position:absolute;top:50%;left:50%;transform-origin:center;animation:galaxy-rotate 25s linear infinite;transform-style:preserve-3d}
+.arm-1{width:400px;height:6px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),rgba(102,178,255,.6),rgba(255,255,255,.4),transparent);transform:translate(-50%,-50%) translateZ(15px) rotateX(85deg);border-radius:3px;box-shadow:0 0 20px rgba(102,178,255,.6)}
+.arm-2{width:350px;height:5px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),rgba(102,178,255,.4),rgba(255,255,255,.3),transparent);transform:translate(-50%,-50%) translateZ(10px) rotateX(85deg) rotate(120deg);border-radius:2px;box-shadow:0 0 15px rgba(102,178,255,.4)}
+
+/* Landing */
+.hero{display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
+.hero h1{font-size:3rem;line-height:1.1;background:linear-gradient(45deg,#fff,#64b5f6,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:0 0 30px rgba(255,255,255,.35)}
+.hero p{max-width:760px;color:rgba(255,255,255,.9)}
+.card-grid{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;width:100%;max-width:1000px}
+.card{position:relative;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:18px;text-decoration:none;color:#fff;transition:transform .3s ease, box-shadow .3s ease, background .3s ease}
+.card:hover{transform:translateY(-4px);background:rgba(255,255,255,.12);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.card h3{margin-bottom:6px}
+
+/* Animations */
+@keyframes title-glow{0%{text-shadow:0 0 30px rgba(255,255,255,.5)}100%{text-shadow:0 0 50px rgba(100,181,246,.8),0 0 80px rgba(255,215,0,.4)}}
+@keyframes twinkle{0%,100%{opacity:.3;transform:translateZ(var(--star-z)) scale(1)}50%{opacity:1;transform:translateZ(var(--star-z)) scale(1.2)}}
+@keyframes float{0%{transform:translateZ(var(--star-z)) rotateY(0) translateX(2px)}100%{transform:translateZ(var(--star-z)) rotateY(360deg) translateX(2px)}}
+@keyframes system-tilt{0%,100%{transform:rotateX(10deg) rotateY(0)}25%{transform:rotateX(15deg) rotateY(5deg)}50%{transform:rotateX(5deg) rotateY(10deg)}75%{transform:rotateX(20deg) rotateY(5deg)}}
+@keyframes orbit-ring{from{transform:translate(-50%,-50%) rotateX(75deg) rotateZ(0)}to{transform:translate(-50%,-50%) rotateX(75deg) rotateZ(360deg)}}
+@keyframes solar-flare{0%,100%{box-shadow:0 0 100px 40px rgba(255,165,0,.6),inset -20px -20px 40px rgba(0,0,0,.3)}50%{box-shadow:0 0 150px 60px rgba(255,165,0,.9),inset -20px -20px 40px rgba(0,0,0,.3)}}
+@keyframes sun-rotate{from{transform:translate(-50%,-50%) translateZ(0) rotateZ(0)}to{transform:translate(-50%,-50%) translateZ(0) rotateZ(360deg)}}
+@keyframes black-hole-wobble{0%,100%{transform:rotateX(5deg) rotateY(0)}50%{transform:rotateX(-5deg) rotateY(5deg)}}
+@keyframes spin{from{transform:translate(-50%,-50%) rotateX(75deg) rotateZ(0)}to{transform:translate(-50%,-50%) rotateX(75deg) rotateZ(360deg)}}
+@keyframes supernova-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-1px) translateY(1px)}50%{transform:translateX(1px) translateY(-1px)}75%{transform:translateX(-1px) translateY(-1px)}}
+@keyframes supernova-pulse{0%{transform:translate(-50%,-50%) translateZ(30px) scale(1)}50%{transform:translate(-50%,-50%) translateZ(30px) scale(1.3)}100%{transform:translate(-50%,-50%) translateZ(30px) scale(1)}}
+@keyframes expand{0%{width:0;height:0;opacity:1}100%{width:600px;height:600px;opacity:0}}
+@keyframes pulsar-wobble{0%,100%{transform:rotateX(0) rotateZ(5deg)}50%{transform:rotateX(10deg) rotateZ(-5deg)}}
+@keyframes neutron-spin{from{transform:translate(-50%,-50%) translateZ(20px) rotate(0)}to{transform:translate(-50%,-50%) translateZ(20px) rotate(360deg)}}
+@keyframes beam-sweep{0%{transform:translate(-50%,-50%) translateZ(10px) rotate(0);opacity:1}50%{opacity:.3}100%{transform:translate(-50%,-50%) translateZ(10px) rotate(360deg);opacity:1}}
+@keyframes galaxy-perspective{0%,100%{transform:rotateX(75deg) rotateY(0)}25%{transform:rotateX(80deg) rotateY(10deg)}50%{transform:rotateX(70deg) rotateY(20deg)}75%{transform:rotateX(85deg) rotateY(10deg)}}
+@keyframes galaxy-rotate{from{transform:translate(-50%,-50%) translateZ(15px) rotateX(85deg) rotate(0)}to{transform:translate(-50%,-50%) translateZ(15px) rotateX(85deg) rotate(360deg)}}
+@keyframes core-pulse{0%,100%{box-shadow:0 0 150px rgba(255,221,68,.8)}50%{box-shadow:0 0 200px rgba(255,221,68,1)}}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+}
+
+/* Responsive */
+@media (max-width:900px){
+  .section-title{font-size:2rem;top:110px}
+  .solar-system{transform:scale(.8)}
+  .black-hole-container,.galaxy-container{transform:scale(.85)}
+  .supernova-container{transform:scale(.9)}
+}
