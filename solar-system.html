@@ -20,24 +20,24 @@
       </nav>
     </header>
 
-    <button class="info-toggle" onclick="toggleInfoPanel()">INFO</button>
-    <div class="info-panel" id="infoPanel"><div class="info-content" id="infoContent"></div></div>
+    <button class="info-toggle" type="button" aria-controls="infoPanel" aria-expanded="false" aria-label="Open Solar System information" onclick="toggleInfoPanel()">INFO</button>
+    <div class="info-panel" id="infoPanel" aria-hidden="true"><div class="info-content" id="infoContent"></div></div>
 
     <main class="main">
       <section class="scene">
         <div class="section-title">Our Beloved Solar System</div>
-        <div class="solar-system">
+        <div class="solar-system" role="img" aria-label="An animated illustration of the inner and outer planets orbiting the Sun">
           <div class="sun"></div>
-          <div class="orbit" style="width:260px;height:260px;"><div class="planet mercury"></div></div>
-          <div class="orbit" style="width:340px;height:340px;"><div class="planet venus"></div></div>
-          <div class="orbit" style="width:460px;height:460px;"><div class="planet earth"></div></div>
-          <div class="orbit" style="width:620px;height:620px;"><div class="planet mars"></div></div>
-          <div class="orbit" style="width:780px;height:780px;"><div class="planet jupiter"></div></div>
+          <div class="orbit mercury-orbit"><div class="planet mercury" aria-label="Mercury"></div></div>
+          <div class="orbit venus-orbit"><div class="planet venus" aria-label="Venus"></div></div>
+          <div class="orbit earth-orbit"><div class="planet earth" aria-label="Earth"></div></div>
+          <div class="orbit mars-orbit"><div class="planet mars" aria-label="Mars"></div></div>
+          <div class="orbit jupiter-orbit"><div class="planet jupiter" aria-label="Jupiter"></div></div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">© 2025 Cosmic Phenomena</footer>
+    <footer class="footer">© 2026 Cosmic Phenomena</footer>
   </div>
   <script src="assets/js/main.js"></script>
 </body>

@@ -20,13 +20,15 @@
       </nav>
     </header>
 
-    <button class="info-toggle" onclick="toggleInfoPanel()">INFO</button>
-    <div class="info-panel" id="infoPanel"><div class="info-content" id="infoContent"></div></div>
+    <button class="info-toggle" type="button" aria-controls="infoPanel" aria-expanded="false" aria-label="Open supernova information" onclick="toggleInfoPanel()">INFO</button>
+    <div class="info-panel" id="infoPanel" aria-hidden="true"><div class="info-content" id="infoContent"></div></div>
 
     <main class="main">
       <section class="scene">
         <div class="section-title">Supernova Explosion</div>
-        <div class="supernova-container">
+        <div class="supernova-container" role="img" aria-label="An animated exploding star with expanding shockwaves">
+          <div class="supernova-rays"></div>
+          <div class="supernova-halo"></div>
           <div class="supernova-core"></div>
           <div class="shockwave wave-1"></div>
           <div class="shockwave wave-2"></div>
@@ -36,7 +38,7 @@
       </section>
     </main>
 
-    <footer class="footer">© 2025 Cosmic Phenomena</footer>
+    <footer class="footer">© 2026 Cosmic Phenomena</footer>
   </div>
   <script src="assets/js/main.js"></script>
 </body>

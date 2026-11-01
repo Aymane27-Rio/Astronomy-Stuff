@@ -20,21 +20,26 @@
       </nav>
     </header>
 
-    <button class="info-toggle" onclick="toggleInfoPanel()">INFO</button>
-    <div class="info-panel" id="infoPanel"><div class="info-content" id="infoContent"></div></div>
+    <button class="info-toggle" type="button" aria-controls="infoPanel" aria-expanded="false" aria-label="Open galaxy information" onclick="toggleInfoPanel()">INFO</button>
+    <div class="info-panel" id="infoPanel" aria-hidden="true"><div class="info-content" id="infoContent"></div></div>
 
     <main class="main">
       <section class="scene">
         <div class="section-title">Spiral Galaxy</div>
-        <div class="galaxy-container">
-          <div class="spiral-arm arm-1"></div>
-          <div class="spiral-arm arm-2"></div>
-          <div class="galaxy-core"></div>
+        <div class="galaxy-container" role="img" aria-label="An animated spiral galaxy with a luminous core and four spiral arms">
+          <div class="galaxy-disc">
+            <div class="galaxy-haze"></div>
+            <div class="spiral-arm arm-1"></div>
+            <div class="spiral-arm arm-2"></div>
+            <div class="spiral-arm arm-3"></div>
+            <div class="spiral-arm arm-4"></div>
+            <div class="galaxy-core"></div>
+          </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">© 2025 Cosmic Phenomena</footer>
+    <footer class="footer">© 2026 Cosmic Phenomena</footer>
   </div>
   <script src="assets/js/main.js"></script>
 </body>

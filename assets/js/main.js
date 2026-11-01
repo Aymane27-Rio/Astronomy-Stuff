@@ -81,7 +81,11 @@ function updateInfoContent(sectionId){
 
 function toggleInfoPanel(){
   const panel=document.getElementById('infoPanel');
-  if(panel) panel.classList.toggle('open');
+  const toggle=document.querySelector('.info-toggle');
+  if(!panel) return;
+  const isOpen=panel.classList.toggle('open');
+  panel.setAttribute('aria-hidden',String(!isOpen));
+  if(toggle) toggle.setAttribute('aria-expanded',String(isOpen));
 }
 
 // Initialize per page
