@@ -28,41 +28,41 @@ function initStars(){
 
 // Info data
 const infoData={
-  'solar-system':{title:'Our Solar System',description:'The Solar System is a gravitationally bound system consisting of the Sun and all the objects that orbit it. Formed about 4.6 billion years ago, our cosmic neighborhood contains eight planets, numerous moons, asteroids, comets, and other celestial bodies.',facts:[
-    'The Sun contains 99.86% of all mass in the Solar System',
-    'Jupiter is more massive than all other planets combined',
-    'One day on Venus (243 Earth days) is longer than its year (225 Earth days)',
-    'Mars has the largest volcano in the Solar System: Olympus Mons',
-    "Saturn's density is less than water - it would float!"
-  ]},
-  'black-hole':{title:'Black Holes',description:'Black holes are regions of spacetime where gravity is so strong that nothing—not even light—can escape. They form when massive stars collapse at the end of their lives, creating a singularity surrounded by an event horizon.',facts:[
-    'The closest black hole to Earth is about 1,000 light-years away',
-    'Time slows down near black holes due to gravitational time dilation',
-    'The supermassive black hole in our galaxy is called Sagittarius A*',
-    'Accretion disks can reach temperatures of millions of degrees',
-    'Black holes eventually evaporate through Hawking radiation'
-  ]},
-  'supernova':{title:'Supernovae',description:'A supernova is the explosive death of a massive star, occurring when the star exhausts its nuclear fuel. These cosmic explosions can briefly outshine entire galaxies and are responsible for creating and dispersing heavy elements throughout the universe.',facts:[
-    'A supernova releases more energy in seconds than our Sun will in its entire lifetime',
-    'Elements heavier than iron are only created during supernovae',
-    'The Crab Nebula is a supernova remnant observed by Chinese astronomers in 1054 AD',
-    'Supernovae occur about once every 50 years in galaxies like the Milky Way',
-    'Type Ia supernovae are used as "standard candles" to measure cosmic distances'
-  ]},
-  'pulsar':{title:'Pulsars',description:'Pulsars are highly magnetized neutron stars that emit beams of electromagnetic radiation from their magnetic poles. As they rotate, these beams sweep across space like lighthouse beams, creating regular pulses when they point toward Earth.',facts:[
-    'Pulsars can spin up to 700 times per second',
-    'They are incredibly dense - a teaspoon would weigh about 6 billion tons',
-    'The first pulsar was discovered in 1967 by Jocelyn Bell Burnell',
-    'Some pulsars are more accurate timekeepers than atomic clocks',
-    'There are over 3,000 known pulsars in our galaxy'
-  ]},
-  'galaxy':{title:'Spiral Galaxies',description:'Spiral galaxies are disk-shaped collections of stars, gas, and dust with prominent spiral arms extending from a central bulge. They contain billions of stars and are held together by gravity and dark matter. Our Milky Way is a barred spiral galaxy.',facts:[
-    'The Milky Way contains 200-400 billion stars',
-    'It takes our Solar System 225-250 million years to orbit the galaxy once',
-    'Spiral arms are density waves that compress gas and trigger star formation',
-    'The Andromeda Galaxy will collide with the Milky Way in 4.5 billion years',
-    'About 60% of observed galaxies are spiral galaxies'
-  ]}
+  'solar-system':{title:'Our Solar System',description:'Our Solar System formed about 4.6 billion years ago from a cloud of gas and dust. The Sun and everything bound to it by gravity—including eight planets, dwarf planets, moons, asteroids, and comets—make up this changing system.',scene:'The animation shows the Sun and all eight planets. Their sizes, spacing, and orbital speeds are stylized so the whole system fits on screen.',facts:[
+    'The eight planets, in order from the Sun, are Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.',
+    'Jupiter and Saturn are gas giants; Uranus and Neptune are ice giants.',
+    'Venus rotates so slowly that one Venus day (243 Earth days) is longer than its year (225 Earth days).',
+    'Olympus Mons on Mars is the largest known volcano in the Solar System.',
+    'Saturn’s average density is lower than water’s, though there is no ocean large enough for it to float in.'
+  ],sources:[['NASA: Solar System facts','https://science.nasa.gov/solar-system/solar-system-facts/'],['NASA: The planets','https://science.nasa.gov/solar-system/planets/']]},
+  'black-hole':{title:'Black Holes',description:'A black hole is a region of spacetime whose gravity is so strong that anything crossing its event horizon cannot escape. Black holes can form through stellar collapse, and supermassive ones inhabit the centers of many galaxies. We infer their presence from how they affect nearby matter and light.',scene:'The bright, flattened disk represents hot material orbiting outside the dark event horizon. The disk is visible; the black hole itself emits no light.',facts:[
+    'The event horizon marks the boundary beyond which escape is impossible; it is not a solid surface.',
+    'Hot gas in an accretion disk can glow brightly before it crosses the event horizon.',
+    'A black hole’s gravity bends light, producing gravitational lensing and distorted views of its surroundings.',
+    'Sagittarius A* is the supermassive black hole at the center of the Milky Way.',
+    'Hawking radiation is a theoretical quantum effect; it has not been detected from an astrophysical black hole.'
+  ],sources:[['NASA: Anatomy of a black hole','https://science.nasa.gov/universe/black-holes/anatomy/']]},
+  'supernova':{title:'Supernovae',description:'A supernova is a stellar explosion, but there is more than one route to one. A massive star can collapse when its core can no longer support itself; a white dwarf can also explode after gaining matter from a companion or merging with another white dwarf. Their remnants enrich and reshape galaxies.',scene:'The expanding rings are a visual shorthand for an explosion and its outward-moving shock. Real supernovae evolve over days, months, and years, not seconds.',facts:[
+    'Core-collapse supernovae come from the deaths of massive stars; Type Ia supernovae involve white dwarfs.',
+    'Supernovae forge and distribute many elements, while some of the heaviest elements also form in neutron-star mergers.',
+    'The Crab Nebula is the expanding remnant of a supernova recorded by observers in 1054.',
+    'Type Ia supernovae have a repeatable peak brightness, making them useful distance indicators after calibration.',
+    'A supernova remnant can remain visible long after the brief explosion has faded.'
+  ],sources:[['NASA: Type Ia supernovae','https://science.nasa.gov/mission/roman-space-telescope/type-ia-supernovae/']]},
+  'pulsar':{title:'Pulsars',description:'Pulsars are rapidly rotating neutron stars with strong magnetic fields. Radiation beams emerge near their magnetic poles; when a beam sweeps across Earth, we detect a pulse. The pulses come from the rotating lighthouse-like beam, not from the star switching on and off.',scene:'The beams mark the directions of radiation, while the magnetic field is tilted relative to the star’s spin axis. This is a simplified illustration, not to scale.',facts:[
+    'A pulsar is observed as a pulsar only when its beam crosses our line of sight.',
+    'Neutron stars pack more mass than the Sun into a sphere roughly the size of a city.',
+    'Jocelyn Bell Burnell identified the first pulsar signal in 1967 while she was a graduate student.',
+    'Some pulsars rotate hundreds of times per second; their regular pulses help test gravity and matter at extreme densities.',
+    'Pulsars gradually lose rotational energy, and some can suddenly change spin in events called glitches.'
+  ],sources:[['NASA / Hubble: Pulsars','https://science.nasa.gov/mission/hubble/science/science-behind-the-discoveries/hubble-pulsars/']]},
+  'galaxy':{title:'Spiral Galaxies',description:'A spiral galaxy is a vast, rotating collection of stars, gas, dust, and dark matter. Its disk and spiral arms are active environments where gas clouds can collapse to form stars. The Milky Way is a barred spiral, with a central bar and arms extending through its disk.',scene:'The glowing core, disk, and spiral arms are drawn as a face-on view. Actual galaxies contain far more stars and dust than this simplified animation can show.',facts:[
+    'The Milky Way is a barred spiral galaxy, and our Solar System lies in one of its spiral-arm regions.',
+    'The Sun takes roughly 230 million years to complete one orbit around the Milky Way’s center.',
+    'Spiral arms are regions where material gathers; gas compression there can encourage new stars to form.',
+    'The Milky Way and Andromeda are moving toward one another and are expected to interact over billions of years.',
+    'Galaxies come in several broad shapes, including spiral, elliptical, and irregular.'
+  ],sources:[['NASA: Galaxy types','https://science.nasa.gov/universe/galaxies/types/'],['NASA: Milky Way facts','https://science.nasa.gov/solar-system/solar-system-facts/']]}
 };
 
 function updateInfoContent(sectionId){
@@ -71,11 +71,14 @@ function updateInfoContent(sectionId){
   if(!info||!infoContent) return;
   infoContent.innerHTML=`
     <div class="info-title">${info.title}</div>
+    <div class="info-kicker">Cosmic field notes</div>
     <div class="info-description">${info.description}</div>
+    ${info.scene?`<div class="info-highlight"><h3>What you’re seeing</h3><p>${info.scene}</p></div>`:''}
     <div class="fun-facts">
-      <h3>Some fascinating facts</h3>
+      <h3>Key ideas</h3>
       ${info.facts.map(f=>`<div class="fact-item">${f}</div>`).join('')}
     </div>
+    ${info.sources?.length?`<div class="info-sources"><h3>Explore trusted sources</h3>${info.sources.map(([label,url])=>`<a href="${url}" target="_blank" rel="noopener noreferrer">${label}<span aria-hidden="true">↗</span></a>`).join('')}</div>`:''}
   `;
 }
 
@@ -85,7 +88,11 @@ function toggleInfoPanel(){
   if(!panel) return;
   const isOpen=panel.classList.toggle('open');
   panel.setAttribute('aria-hidden',String(!isOpen));
-  if(toggle) toggle.setAttribute('aria-expanded',String(isOpen));
+  if(toggle){
+    toggle.setAttribute('aria-expanded',String(isOpen));
+    toggle.setAttribute('aria-label',isOpen?'Close information panel':'Open information panel');
+    toggle.textContent=isOpen?'CLOSE':'INFO';
+  }
 }
 
 // Initialize per page
@@ -93,6 +100,24 @@ window.addEventListener('DOMContentLoaded',()=>{
   initStars();
   const sectionId=document.body.getAttribute('data-section');
   if(sectionId) updateInfoContent(sectionId);
+
+  // Expand one force explanation at a time in the physics chapter.
+  const forceCards=[...document.querySelectorAll('.force-card[data-force]')];
+  for(const card of forceCards){
+    card.addEventListener('click',()=>{
+      const isOpen=card.getAttribute('aria-expanded')==='true';
+      for(const other of forceCards){
+        const detail=document.getElementById(other.getAttribute('aria-controls'));
+        other.setAttribute('aria-expanded','false');
+        if(detail) detail.hidden=true;
+      }
+      if(!isOpen){
+        card.setAttribute('aria-expanded','true');
+        const detail=document.getElementById(card.getAttribute('aria-controls'));
+        if(detail) detail.hidden=false;
+      }
+    });
+  }
 
   // Page transition overlay
   const overlay=document.createElement('div');

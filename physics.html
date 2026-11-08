@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="An interactive guide to the four fundamental forces, the Standard Model, and the search for a unified description of nature." />
+  <title>Cosmic Phenomena | Physics &amp; Maths</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-section="physics">
+  <div class="site-wrap">
+    <div class="stars" aria-hidden="true"></div>
+    <header class="header">
+      <a class="brand brand-link" href="index.html" aria-label="Cosmic Phenomena home">Cosmic Phenomena</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a class="atlas-link" href="index.html">← Atlas</a>
+        <a href="solar-system.html">Solar System</a>
+        <a href="black-hole.html">Black Hole</a>
+        <a href="supernova.html">Supernova</a>
+        <a href="pulsar.html">Pulsar</a>
+        <a href="galaxy.html">Galaxy</a>
+        <a class="active" aria-current="page" href="physics.html">Physics &amp; Maths</a>
+      </nav>
+    </header>
+
+    <main class="main physics-main">
+      <article class="physics-page">
+        <header class="physics-hero">
+          <div class="hero-eyebrow">THE RULES BENEATH THE COSMOS</div>
+          <h1>Four forces. One universe.</h1>
+          <p>From the pull of a planet to the dance of quarks, nature’s interactions shape everything we observe. Explore what physics has unified—and what remains an open question.</p>
+          <a class="physics-jump" href="#forces">Explore the forces <span aria-hidden="true">↓</span></a>
+        </header>
+
+        <section class="physics-section" id="forces" aria-labelledby="forces-title">
+          <div class="section-kicker">01 / THE FUNDAMENTAL INTERACTIONS</div>
+          <h2 id="forces-title">Four ways the universe interacts</h2>
+          <p class="section-lede">Choose a force to see what it acts on, how far it reaches, and the role it plays in the cosmos.</p>
+          <div class="force-grid">
+            <button class="force-card force-gravity" type="button" aria-expanded="false" aria-controls="force-detail-gravity" data-force="gravity">
+              <span class="force-symbol" aria-hidden="true">⌁</span><span class="force-name">Gravity</span><span class="force-carrier">Carrier: unknown / hypothetical graviton</span><span class="force-summary">Shapes planets, stars, galaxies, and spacetime itself.</span><span class="force-expand">Explore force <span aria-hidden="true">+</span></span>
+            </button>
+            <button class="force-card force-electromagnetism" type="button" aria-expanded="false" aria-controls="force-detail-electromagnetism" data-force="electromagnetism">
+              <span class="force-symbol" aria-hidden="true">±</span><span class="force-name">Electromagnetism</span><span class="force-carrier">Carrier: photon</span><span class="force-summary">Acts between electric charges; light is its messenger.</span><span class="force-expand">Explore force <span aria-hidden="true">+</span></span>
+            </button>
+            <button class="force-card force-strong" type="button" aria-expanded="false" aria-controls="force-detail-strong" data-force="strong">
+              <span class="force-symbol" aria-hidden="true">✣</span><span class="force-name">Strong interaction</span><span class="force-carrier">Carrier: gluons</span><span class="force-summary">Binds quarks; its residual effect holds atomic nuclei together.</span><span class="force-expand">Explore force <span aria-hidden="true">+</span></span>
+            </button>
+            <button class="force-card force-weak" type="button" aria-expanded="false" aria-controls="force-detail-weak" data-force="weak">
+              <span class="force-symbol" aria-hidden="true">⇄</span><span class="force-name">Weak interaction</span><span class="force-carrier">Carriers: W<sup>±</sup> and Z<sup>0</sup></span><span class="force-summary">Changes particle flavour and enables radioactive beta decay.</span><span class="force-expand">Explore force <span aria-hidden="true">+</span></span>
+            </button>
+          </div>
+          <div class="force-details" id="force-detail-gravity" data-detail="gravity" hidden><h3>Gravity · the geometry of spacetime</h3><p>General relativity describes gravity as the curvature of spacetime produced by energy and momentum. It dominates at astronomical scales, yet it is not part of the Standard Model’s quantum description. A complete, experimentally confirmed quantum theory of gravity remains unknown.</p></div>
+          <div class="force-details" id="force-detail-electromagnetism" data-detail="electromagnetism" hidden><h3>Electromagnetism · charge in motion</h3><p>Electric and magnetic phenomena are two aspects of one interaction. Photons are the force carriers; because they are massless, electromagnetic effects can reach across infinite distances. This force binds electrons to nuclei and underlies chemistry, light, and most everyday contact.</p></div>
+          <div class="force-details" id="force-detail-strong" data-detail="strong" hidden><h3>Strong interaction · the glue of matter</h3><p>Quantum chromodynamics (QCD) describes quarks interacting through gluons. The strong interaction confines quarks inside particles such as protons and neutrons. A residual strong interaction between protons and neutrons helps bind atomic nuclei.</p></div>
+          <div class="force-details" id="force-detail-weak" data-detail="weak" hidden><h3>Weak interaction · particles can change identity</h3><p>The weak interaction can change one quark flavour into another. It drives beta decay and important reactions in stars, including steps in the proton–proton chain that powers the Sun. Its massive W and Z carriers make its range extremely short.</p></div>
+        </section>
+
+        <section class="physics-section maxwell-section" aria-labelledby="maxwell-title">
+          <div class="section-kicker">02 / ELECTROMAGNETISM IN FOUR LAWS</div>
+          <h2 id="maxwell-title">Maxwell’s equations</h2>
+          <p class="section-lede">In SI units, these four compact statements link electric and magnetic fields to charge, current, and changing fields. Together they predict electromagnetic waves—including light.</p>
+          <div class="maxwell-grid">
+            <article class="maxwell-law"><span>GAUSS · ELECTRICITY</span><div class="maxwell-equation">∇ · E = ρ / ε<sub>0</sub></div><p>Electric charge is a source or sink of electric field.</p></article>
+            <article class="maxwell-law"><span>GAUSS · MAGNETISM</span><div class="maxwell-equation">∇ · B = 0</div><p>No isolated magnetic monopoles have been observed; magnetic field lines form loops.</p></article>
+            <article class="maxwell-law"><span>FARADAY · INDUCTION</span><div class="maxwell-equation">∇ × E = −∂B / ∂t</div><p>A changing magnetic field induces a circulating electric field.</p></article>
+            <article class="maxwell-law"><span>AMPÈRE–MAXWELL</span><div class="maxwell-equation">∇ × B = μ<sub>0</sub>J + μ<sub>0</sub>ε<sub>0</sub> ∂E / ∂t</div><p>Current and changing electric fields both produce magnetic fields.</p></article>
+          </div>
+          <p class="maxwell-note"><strong>Symbols:</strong> E is electric field, B magnetic field, ρ charge density, J current density; ε<sub>0</sub> and μ<sub>0</sub> are vacuum constants. The displacement-current term is essential: it completes the law and allows electromagnetic waves to propagate through vacuum.</p>
+          <a class="maxwell-source" href="https://www.feynmanlectures.caltech.edu/II_20.html" target="_blank" rel="noreferrer">Read more · The Feynman Lectures on Physics ↗</a>
+        </section>
+
+        <section class="physics-section model-section" aria-labelledby="model-title">
+          <div class="section-kicker">03 / OUR QUANTUM MAP</div>
+          <h2 id="model-title">The Standard Model</h2>
+          <p class="section-lede">A remarkably successful quantum field theory of elementary particles and three interactions. It is a powerful framework, not a complete theory of everything.</p>
+          <div class="model-layout">
+            <div class="particle-map">
+              <div class="particle-family"><h3>Matter · fermions</h3><p>Spin one-half particles, arranged in three generations.</p><div class="particle-chips"><span>up</span><span>down</span><span>charm</span><span>strange</span><span>top</span><span>bottom</span><span>electron</span><span>muon</span><span>tau</span><span>3 neutrinos</span></div></div>
+              <div class="particle-family"><h3>Force fields · gauge bosons</h3><p>Integer-spin quanta associated with the three Standard Model gauge interactions.</p><div class="particle-chips boson-chips"><span>photon · EM</span><span>8 gluons · strong</span><span>W and Z · weak</span></div></div>
+              <div class="particle-family higgs-family"><h3>Mass mechanism · scalar boson</h3><p>The Higgs field’s associated particle was discovered at CERN in 2012.</p><div class="particle-chips"><span>Higgs boson · spin 0</span></div></div>
+            </div>
+            <aside class="model-limit"><span class="limit-mark" aria-hidden="true">!</span><h3>What’s missing?</h3><p>Gravity is described extremely well by general relativity, but it has not been incorporated into the Standard Model. The model also leaves major questions—such as dark matter and the matter–antimatter imbalance—unanswered.</p><a href="https://home.cern/science/physics/standard-model/" target="_blank" rel="noreferrer">CERN’s Standard Model guide ↗</a></aside>
+          </div>
+          <p class="mass-note"><strong>A mass nuance:</strong> the Higgs mechanism gives mass to elementary particles such as electrons and quarks, and to the W and Z bosons. Most of a proton’s mass comes instead from energy in the strong interaction binding its quarks and gluons.</p>
+        </section>
+
+        <section class="physics-section lagrangian-section" aria-labelledby="lagrangian-title">
+          <div class="section-kicker">04 / THE LANGUAGE OF FIELDS</div>
+          <h2 id="lagrangian-title">Reading the equation</h2>
+          <p class="section-lede">The Standard Model can be written compactly as a Lagrangian density. It encodes fields, their motion, and their interactions; the equations of motion follow from the action principle.</p>
+          <div class="equation-card" aria-label="A schematic decomposition of the Standard Model Lagrangian">
+            <div class="equation-label">STANDARD MODEL LAGRANGIAN · SCHEMATIC</div>
+            <div class="equation">ℒ<sub>SM</sub> = ℒ<sub>gauge</sub> + ℒ<sub>fermion</sub> + ℒ<sub>Higgs</sub> + ℒ<sub>Yukawa</sub></div>
+            <p>This is a map of the main ingredients, not the full expanded equation. Each term contains precise mathematical structure and constants measured in experiments.</p>
+          </div>
+          <div class="term-grid">
+            <article class="term-card"><span>01</span><h3>Gauge fields</h3><p>Describe the strong and electroweak force fields and their self-interactions.</p></article>
+            <article class="term-card"><span>02</span><h3>Fermion fields</h3><p>Describe quarks and leptons and how they propagate and couple to gauge fields.</p></article>
+            <article class="term-card"><span>03</span><h3>Higgs field</h3><p>Includes the Higgs field’s dynamics and potential; its non-zero vacuum value enables electroweak symmetry breaking.</p></article>
+            <article class="term-card"><span>04</span><h3>Yukawa couplings</h3><p>Describe Higgs interactions with fermions; their strengths set the fermion masses after symmetry breaking.</p></article>
+          </div>
+          <p class="symmetry-note"><strong>Symmetry is the organizing principle.</strong> Gauge symmetries constrain the allowed interactions. The Higgs field’s vacuum state breaks electroweak symmetry, while preserving the mathematical consistency of the theory.</p>
+        </section>
+
+        <section class="physics-section unification-section" aria-labelledby="unification-title">
+          <div class="section-kicker">05 / THE OPEN FRONTIER</div>
+          <h2 id="unification-title">How far have we unified?</h2>
+          <div class="unification-track">
+            <article class="unification-step achieved"><span class="step-state">ESTABLISHED</span><h3>Electricity + magnetism</h3><p>Maxwell’s theory revealed these as aspects of electromagnetism.</p></article>
+            <article class="unification-step achieved"><span class="step-state">ESTABLISHED</span><h3>Electromagnetic + weak</h3><p>Electroweak theory joins them in one framework; experiments confirmed its W and Z bosons.</p></article>
+            <article class="unification-step proposed"><span class="step-state">UNCONFIRMED</span><h3>Strong + electroweak</h3><p>Grand unified theories propose a deeper connection at far higher energies.</p></article>
+            <article class="unification-step open-question"><span class="step-state">OPEN QUESTION</span><h3>Including gravity</h3><p>A theory unifying quantum physics and gravity remains a major unsolved problem.</p></article>
+          </div>
+          <p class="closing-question">The search continues—not because the Standard Model failed, but because the universe still has more to explain.</p>
+          <div class="source-links"><span>Start exploring</span><a href="https://home.cern/science/physics/standard-model/" target="_blank" rel="noreferrer">The Standard Model · CERN</a><a href="https://home.cern/science/physics/unified-forces/" target="_blank" rel="noreferrer">Unified forces · CERN</a><a href="https://home.cern/science/physics/higgs-boson/" target="_blank" rel="noreferrer">The Higgs boson · CERN</a></div>
+        </section>
+      </article>
+    </main>
+    <footer class="footer">© 2026 Cosmic Phenomena · Physics &amp; Maths</footer>
+  </div>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
