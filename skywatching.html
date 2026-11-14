@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn to read planetary alignments, find the Big and Little Dipper, and recognize familiar constellations and star clusters." />
+  <title>Cosmic Phenomena | Skywatching</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-section="skywatching">
+  <div class="site-wrap">
+    <div class="stars" aria-hidden="true"></div>
+    <header class="header">
+      <a class="brand brand-link" href="index.html" aria-label="Cosmic Phenomena home">Cosmic Phenomena</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a class="atlas-link" href="index.html">← Atlas</a>
+        <a href="solar-system.html">Solar System</a>
+        <a href="black-hole.html">Black Hole</a>
+        <a href="supernova.html">Supernova</a>
+        <a href="pulsar.html">Pulsar</a>
+        <a href="galaxy.html">Galaxy</a>
+        <a href="physics.html">Physics &amp; Maths</a>
+        <a class="active" aria-current="page" href="skywatching.html">Skywatching</a>
+      </nav>
+    </header>
+
+    <main class="main physics-main sky-main">
+      <article class="sky-page">
+        <header class="sky-hero">
+          <div class="hero-eyebrow">A FIELD GUIDE TO THE NIGHT SKY</div>
+          <h1>Read the sky.<br /><span>Find the patterns.</span></h1>
+          <p>Planets wander along a shared path. Stars sketch familiar shapes across the night. Learn what those patterns mean—and how to find a few for yourself.</p>
+          <nav class="sky-jumps" aria-label="Skywatching topics">
+            <a href="#alignments">Planet alignments <span aria-hidden="true">↓</span></a>
+            <a href="#dippers">The Dippers <span aria-hidden="true">↓</span></a>
+            <a href="#patterns">More star patterns <span aria-hidden="true">↓</span></a>
+          </nav>
+        </header>
+
+        <section class="sky-section alignment-section" id="alignments" aria-labelledby="alignments-title">
+          <div class="sky-kicker">01 / THE PLANETS FROM EARTH</div>
+          <h2 id="alignments-title">A lineup is a point of view</h2>
+          <p class="sky-lede">The planets can appear strung out across the sky, but they are still separated by vast distances. Their orbits lie close to a flat plane; from Earth, that plane looks like a path across the sky called the <strong>ecliptic</strong>.</p>
+
+          <div class="alignment-grid">
+            <figure class="alignment-card sky-view-card">
+              <svg class="sky-diagram sky-dome" viewBox="0 0 600 300" role="img" aria-labelledby="dome-title dome-desc">
+                <title id="dome-title">Planets appearing along the ecliptic</title>
+                <desc id="dome-desc">From Earth, several planets appear at different points along a gently curved arc called the ecliptic.</desc>
+                <defs>
+                  <linearGradient id="ecliptic-line" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#79d9d5" stop-opacity=".18"/><stop offset=".5" stop-color="#b7e9ff"/><stop offset="1" stop-color="#9a9dff" stop-opacity=".22"/></linearGradient>
+                  <radialGradient id="planet-glow"><stop stop-color="#fff"/><stop offset=".35" stop-color="#ffe9a1"/><stop offset="1" stop-color="#ff9d57"/></radialGradient>
+                </defs>
+                <path class="sky-horizon" d="M38 248 Q300 220 562 248" />
+                <path class="ecliptic-arc" d="M62 206 Q300 32 538 206" />
+                <text x="300" y="74" text-anchor="middle" class="diagram-label">THE ECLIPTIC · APPARENT PATH</text>
+                <g class="diagram-planet mercury-dot"><circle cx="112" cy="178" r="8"/><text x="112" y="208">Mercury</text></g>
+                <g class="diagram-planet venus-dot"><circle cx="222" cy="111" r="12"/><text x="222" y="145">Venus</text></g>
+                <g class="diagram-planet mars-dot"><circle cx="376" cy="110" r="10"/><text x="376" y="144">Mars</text></g>
+                <g class="diagram-planet jupiter-dot"><circle cx="490" cy="164" r="15"/><text x="490" y="201">Jupiter</text></g>
+                <circle class="earth-observer" cx="300" cy="247" r="7" />
+                <text x="300" y="277" text-anchor="middle" class="observer-label">YOUR VIEW FROM EARTH</text>
+              </svg>
+              <figcaption>Sky view · objects can look close together while remaining far apart in space.</figcaption>
+            </figure>
+            <div class="alignment-copy">
+              <article class="sky-note"><span class="note-mark">01</span><div><h3>Alignment</h3><p>A casual term for planets appearing along the same stretch of sky. They usually form an arc, not a ruler-straight line.</p></div></article>
+              <article class="sky-note"><span class="note-mark">02</span><div><h3>Conjunction</h3><p>Two celestial objects appear especially close together from our viewpoint. They may still be millions of kilometres apart.</p></div></article>
+              <article class="sky-note"><span class="note-mark">03</span><div><h3>Not a rare cosmic force</h3><p>A sky lineup does not pull planets together or cause extraordinary effects on Earth. It is a geometry-and-viewpoint event.</p></div></article>
+            </div>
+          </div>
+          <div class="orbit-perspective">
+            <div class="orbit-copy"><span class="orbit-tag">SAME SKY · DIFFERENT DISTANCES</span><h3>Our solar system from above</h3><p>The planets travel on separate orbits around the Sun. Because those orbits are nearly in one plane, their apparent positions trace a similar route across our sky.</p></div>
+            <svg class="orbit-diagram" viewBox="0 0 600 300" role="img" aria-labelledby="orbit-title orbit-desc">
+              <title id="orbit-title">Planets on separate solar orbits</title>
+              <desc id="orbit-desc">A top-down schematic shows four planets on different circular orbits around the Sun.</desc>
+              <circle class="orbit-ring ring-a" cx="300" cy="150" r="46"/><circle class="orbit-ring ring-b" cx="300" cy="150" r="78"/><circle class="orbit-ring ring-c" cx="300" cy="150" r="111"/><circle class="orbit-ring ring-d" cx="300" cy="150" r="145"/>
+              <circle class="orbit-sun" cx="300" cy="150" r="15"/><circle class="orbit-body body-a" cx="343" cy="134" r="5"/><circle class="orbit-body body-b" cx="227" cy="121" r="7"/><circle class="orbit-body body-c" cx="348" cy="202" r="8"/><circle class="orbit-body body-d" cx="172" cy="173" r="10"/>
+              <text x="300" y="283" text-anchor="middle" class="orbit-caption">SCHEMATIC · NOT TO SCALE</text>
+            </svg>
+          </div>
+          <p class="sky-tip"><strong>Naked-eye planets:</strong> Mercury, Venus, Mars, Jupiter, and Saturn can be seen without a telescope when their positions and sky conditions cooperate. Check a current sky chart for your location—and never look directly at the Sun to find a nearby planet.</p>
+        </section>
+
+        <section class="sky-section dipper-section" id="dippers" aria-labelledby="dippers-title">
+          <div class="sky-kicker">02 / TWO FAMOUS ASTERISMS</div>
+          <h2 id="dippers-title">The Big Dipper points north</h2>
+          <p class="sky-lede">The Big and Little Dippers are recognizable star patterns called <strong>asterisms</strong>. Each sits inside a larger official constellation: Ursa Major, the Great Bear, and Ursa Minor, the Little Bear.</p>
+
+          <div class="dipper-chart">
+            <svg class="sky-diagram dipper-map" viewBox="0 0 900 390" role="img" aria-labelledby="dipper-map-title dipper-map-desc">
+              <title id="dipper-map-title">Big Dipper, pointer stars, Polaris, and Little Dipper</title>
+              <desc id="dipper-map-desc">The two stars at the outer edge of the Big Dipper's bowl point toward Polaris, which is at the end of the Little Dipper's handle.</desc>
+              <defs><filter id="star-shimmer" x="-300%" y="-300%" width="700%" height="700%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter><linearGradient id="pointer-path" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#ffd87a" stop-opacity=".2"/><stop offset="1" stop-color="#a9dfef" stop-opacity=".8"/></linearGradient></defs>
+              <path class="constellation-line big-line" d="M110 174 L166 151 L184 208 L124 232 Z M166 151 L222 122 L279 128 L325 161" />
+              <path class="constellation-line little-line" d="M552 150 L520 203 L565 244 L627 219 Z M552 150 L592 128 L641 105 L690 82" />
+              <path class="pointer-line" d="M110 174 Q300 62 690 82" />
+              <text class="map-label map-label-big" x="185" y="290" text-anchor="middle">BIG DIPPER · URSA MAJOR</text>
+              <text class="map-label map-label-little" x="657" y="290" text-anchor="middle">LITTLE DIPPER · URSA MINOR</text>
+              <text class="star-label" x="93" y="158" text-anchor="end">Merak</text><text class="star-label" x="169" y="137">Dubhe</text>
+              <text class="star-label polaris-label" x="705" y="63">Polaris</text>
+              <text class="pointer-caption" x="411" y="90" text-anchor="middle">FOLLOW THE POINTER STARS</text>
+              <g class="chart-star big-star" filter="url(#star-shimmer)"><circle cx="110" cy="174" r="6"/><circle cx="166" cy="151" r="7"/><circle cx="184" cy="208" r="5"/><circle cx="124" cy="232" r="5"/><circle cx="222" cy="122" r="5"/><circle cx="279" cy="128" r="5"/><circle cx="325" cy="161" r="5"/></g>
+              <g class="chart-star little-star" filter="url(#star-shimmer)"><circle cx="552" cy="150" r="3.5"/><circle cx="520" cy="203" r="3.5"/><circle cx="565" cy="244" r="3.5"/><circle cx="627" cy="219" r="3.5"/><circle cx="592" cy="128" r="3.5"/><circle cx="641" cy="105" r="4"/><circle cx="690" cy="82" r="9"/></g>
+            </svg>
+            <div class="dipper-facts">
+              <article><span>THE BIG DIPPER</span><p>Seven bright stars make the familiar bowl and handle. The pattern is only part of the much larger Ursa Major constellation.</p></article>
+              <article><span>THE LITTLE DIPPER</span><p>Polaris, the North Star, marks the end of its handle. The rest of this smaller pattern is dimmer and can be harder to spot.</p></article>
+              <article><span>A WAYFINDING CLUE</span><p>Dubhe and Merak are the “pointer stars.” Trace from Merak through Dubhe and extend the line to find Polaris.</p></article>
+            </div>
+          </div>
+          <p class="sky-tip"><strong>Remember:</strong> Polaris is not the brightest star in the night sky. It appears nearly aligned with Earth’s north rotational axis, so the northern sky seems to turn around it.</p>
+        </section>
+
+        <section class="sky-section pattern-section" id="patterns" aria-labelledby="patterns-title">
+          <div class="sky-kicker">03 / MORE WAYS TO TRACE THE SKY</div>
+          <h2 id="patterns-title">Constellations, asterisms, and clusters</h2>
+          <p class="sky-lede">The lines on a star chart are guides we draw between stars. Most stars in a pattern are at very different distances and are not physically connected. The IAU defines 88 official constellation regions; cultures also share many different star patterns and stories.</p>
+          <div class="pattern-grid">
+            <article class="pattern-card">
+              <div class="pattern-art"><svg class="sky-diagram mini-chart" viewBox="0 0 260 160" role="img" aria-label="Orion's hourglass outline and three belt stars"><path class="constellation-line" d="M63 39 L104 67 L128 80 L155 66 L197 38 M104 67 L92 102 L128 80 L160 104 M92 102 L74 135 M160 104 L181 136"/><g class="chart-star"><circle cx="63" cy="39" r="6"/><circle cx="104" cy="67" r="5"/><circle cx="128" cy="80" r="4"/><circle cx="155" cy="66" r="5"/><circle cx="197" cy="38" r="6"/><circle cx="92" cy="102" r="6"/><circle cx="160" cy="104" r="6"/><circle cx="74" cy="135" r="5"/><circle cx="181" cy="136" r="5"/></g><text x="128" y="27" class="mini-label" text-anchor="middle">ORION</text></svg></div>
+              <div class="pattern-copy"><span class="pattern-type">CONSTELLATION</span><h3>Orion</h3><p>Find the three bright stars in Orion’s Belt. They sit between the reddish Betelgeuse and blue-white Rigel in the familiar hunter pattern.</p></div>
+            </article>
+            <article class="pattern-card">
+              <div class="pattern-art"><svg class="sky-diagram mini-chart" viewBox="0 0 260 160" role="img" aria-label="Five stars forming the W-shaped pattern of Cassiopeia"><path class="constellation-line" d="M36 58 L82 108 L126 52 L174 103 L222 48"/><g class="chart-star"><circle cx="36" cy="58" r="6"/><circle cx="82" cy="108" r="5"/><circle cx="126" cy="52" r="6"/><circle cx="174" cy="103" r="5"/><circle cx="222" cy="48" r="6"/></g><text x="130" y="27" class="mini-label" text-anchor="middle">CASSIOPEIA</text></svg></div>
+              <div class="pattern-copy"><span class="pattern-type">CONSTELLATION</span><h3>Cassiopeia</h3><p>Five bright stars form a distinctive W or M, depending on its orientation. In much of the northern hemisphere it circles the pole opposite the Big Dipper.</p></div>
+            </article>
+            <article class="pattern-card">
+              <div class="pattern-art"><svg class="sky-diagram mini-chart" viewBox="0 0 260 160" role="img" aria-label="Three bright stars forming the Summer Triangle"><path class="constellation-line triangle-line" d="M51 122 L129 42 L210 119 Z"/><g class="chart-star"><circle cx="51" cy="122" r="7"/><circle cx="129" cy="42" r="7"/><circle cx="210" cy="119" r="7"/></g><text x="129" y="27" class="mini-label" text-anchor="middle">SUMMER TRIANGLE</text><text x="37" y="146" class="small-star-label">Altair</text><text x="129" y="57" class="small-star-label">Vega</text><text x="204" y="144" class="small-star-label">Deneb</text></svg></div>
+              <div class="pattern-copy"><span class="pattern-type">ASTERISM</span><h3>Summer Triangle</h3><p>A large sky pattern joining Vega, Deneb, and Altair—the brightest stars in Lyra, Cygnus, and Aquila. It crosses three separate constellations.</p></div>
+            </article>
+            <article class="pattern-card">
+              <div class="pattern-art"><svg class="sky-diagram mini-chart pleiades-chart" viewBox="0 0 260 160" role="img" aria-label="A compact cluster of blue-white Pleiades stars"><circle class="cluster-haze" cx="130" cy="87" r="54"/><g class="chart-star"><circle cx="101" cy="58" r="4"/><circle cx="128" cy="48" r="5"/><circle cx="151" cy="59" r="4"/><circle cx="83" cy="81" r="3"/><circle cx="112" cy="82" r="5"/><circle cx="143" cy="83" r="4"/><circle cx="169" cy="79" r="3"/><circle cx="96" cy="107" r="4"/><circle cx="126" cy="113" r="4"/><circle cx="154" cy="104" r="5"/><circle cx="133" cy="72" r="3"/></g><text x="130" y="27" class="mini-label" text-anchor="middle">THE PLEIADES</text></svg></div>
+              <div class="pattern-copy"><span class="pattern-type">OPEN STAR CLUSTER</span><h3>The Pleiades</h3><p>A real family of young stars in Taurus, also known as the Seven Sisters. Its compact blue-white grouping is different from a stick-figure constellation.</p></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="sky-section sky-sources" aria-labelledby="sky-sources-title">
+          <div class="sky-kicker">KEEP EXPLORING</div><h2 id="sky-sources-title">Trusted sky guides</h2>
+          <div class="sky-source-links">
+            <a href="https://science.nasa.gov/solar-system/skywatching/planetary-alignments-and-planet-parades/" target="_blank" rel="noopener noreferrer">NASA · Planetary alignments ↗</a>
+            <a href="https://science.nasa.gov/solar-system/skywatching/" target="_blank" rel="noopener noreferrer">NASA · Skywatching ↗</a>
+            <a href="https://assets.science.nasa.gov/content/dam/science/hpd/heat/misc-files/Alaska-Flag-Ornament-Activity.pdf" target="_blank" rel="noopener noreferrer">NASA · Big Dipper and Polaris ↗</a>
+            <a href="https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx" target="_blank" rel="noopener noreferrer">IAU · Constellations and asterisms ↗</a>
+          </div>
+          <p class="sky-chart-note">Star charts here are simplified illustrations, not a live sky map. The view changes with your location, date, and time.</p>
+        </section>
+      </article>
+    </main>
+    <footer class="footer">© 2026 Cosmic Phenomena · Skywatching</footer>
+  </div>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
